@@ -12,17 +12,17 @@ Game::~Game() {}
 
 
 // Vertices for one Triangle
-float vertices[24] = {	1.0f, 1.0f, -5.0f, 
-						-1.0f, 1.0f, -5.0f, 
-						-1.0f, -1.0f, -5.0f,
-						1.0f, -1.0f, 5.0f,
-						-1.0f, 1.0f, -5.0f,
-						1.0f, 1.0f, -5.0f,
-						-1.0f, -1.0f, -5.0f,
-						1.0f, -1.0f, -5.0f};
+float vertices[] = {	-1.0f, -1.0f, 1.0f, 
+						1.0f, -1.0f, 1.0f, 
+						1.0f, 1.0f, 1.0f,
+						-1.0f, 1.0f, 1.0f,
+						-1.0f, -1.0f, -1.0f,
+						1.0f, -1.0f, -1.0f,
+						1.0f, 1.0f, -1.0f,
+						-1.0f, 1.0f, -1.0f};
 
 // Colors for those vertices
-float colors[24] = { 1.0f, 0.0f, 0.0f,
+float colors[] = { 1.0f, 0.0f, 0.0f,
 					0.0f, 1.0f, 0.0f,
 					0.0f, 0.0f, 1.0f,
 					0.0f, 1.0f, 1.0f, 
@@ -32,7 +32,18 @@ float colors[24] = { 1.0f, 0.0f, 0.0f,
 					0.0f, 1.0f, 1.0f, };
 
 // Index to be drawn
-unsigned int vertex_index[5] = { 0, 1, 2, 3, 4 };
+unsigned int vertex_index[] = { 0, 1, 2,
+								2,3,0,
+								2,6,3,
+								6,7,3,
+								7,6,5, 
+								5,4,7, 
+								5,0,4, 
+								5,1,0, 
+								1,5,6, 
+								6,2,1, 
+								4,0,3, 
+								3,7,4 };
 
 void Game::run()
 {
@@ -63,6 +74,7 @@ void Game::initialize()
 	isRunning = true;
 
 	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glTranslated(0.0f, 0.0f, -8.0f);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
@@ -84,12 +96,12 @@ void Game::render()
 	glEnableClientState(GL_COLOR_ARRAY);
 
 
-	glVertexPointer(5, GL_FLOAT, 0, &vertices);
-	glColorPointer(5, GL_FLOAT, 0, &colors);
+	glVertexPointer(3, GL_FLOAT, 0, &vertices);
+	glColorPointer(3, GL_FLOAT, 0, &colors);
 
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
 
-	glDrawElements(GL_TRIANGLES, 5 , GL_UNSIGNED_INT, &vertex_index);
+	glDrawElements(GL_TRIANGLES, 36 , GL_UNSIGNED_INT, &vertex_index);
 
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
