@@ -31,6 +31,21 @@ float colors[] = { 1.0f, 0.0f, 0.0f,
 					1.0f, 1.0f, 1.0f,
 					0.0f, 1.0f, 1.0f, };
 
+Vector3f m_points[] = { {vertices[0],vertices[1],vertices[2] },
+						{vertices[3],vertices[4],vertices[5] },
+						{vertices[6],vertices[7],vertices[8] },
+						{vertices[9],vertices[10],vertices[11] },
+						{vertices[12],vertices[13],vertices[14] },
+						{vertices[15],vertices[16],vertices[17] },
+						{vertices[18],vertices[19],vertices[20] },
+							{vertices[21],vertices[22],vertices[23] },
+							{vertices[24],vertices[25],vertices[26] },
+							{vertices[27],vertices[28],vertices[29] },
+							{vertices[30],vertices[31],vertices[32] },
+							{vertices[33],vertices[34],vertices[35] },
+						};
+
+
 // Index to be drawn
 unsigned int vertex_index[] = { 0, 1, 2,
 								2,3,0,

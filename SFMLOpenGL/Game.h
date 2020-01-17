@@ -3,12 +3,10 @@
 #include <SFML/OpenGL.hpp>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
-#include <Vector3.h>
-#include <Matrix3.h>
+#include "Vector3f.h"
+#include "Matrix3f.h"
 
 using namespace std;
-using namespace gpp;
 
 class Game
 {
@@ -23,7 +21,6 @@ private:
 	void update();
 	void render();
 	void unload();
-
 	sf::Clock clock;
 	sf::Time elapsed;
 
