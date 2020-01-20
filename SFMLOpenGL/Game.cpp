@@ -101,11 +101,91 @@ void Game::update()
 	elapsed = clock.getElapsedTime();
 
 	cout << "Update up" << endl;
+
+	cubeRotation();
 }
+
+
+void Game::cubeRotation()
+{
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::rotationX(rotationAngle) * m_points[i];
+		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::rotationX(-rotationAngle) * m_points[i];
+		}
+	}
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::rotationY(-rotationAngle) * m_points[i];
+		}
+	}
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::rotationY(-rotationAngle) * m_points[i];
+		}
+	}
+
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::scale3D(101) * m_points[i];
+		}
+	}
+
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			m_points[i] = Matrix3f::scale3D(-99) * m_points[i];
+		}
+	}
+
+
+	for (int i = 0, j = 0; i < 8, j < 24; i++)
+	{
+		vertices[j] = m_points[i].m_x;
+		j++;
+		vertices[j] = m_points[i].m_y;
+		j++;
+		vertices[j] = m_points[i].m_z;
+		j++;
+	}
+
+
+
+
+}
+
+
 
 void Game::render()
 {
 	cout << "Drawing" << endl;
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -129,4 +209,5 @@ void Game::unload()
 {
 	cout << "Cleaning up" << endl;
 }
+
 
